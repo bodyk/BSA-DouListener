@@ -11,21 +11,27 @@ namespace DouListener
     class SiteListener
     {
         public string SiteAddress { get; set; } = "dou.ua";
-        public int RequestCount { get; set; } = 10;
-        public void Listen(ILogger logger)
+        public int RequestCount { get; set; } = 100;
+
+        private readonly ILogger _logger;
+
+        public SiteListener(ILogger logger)
+        {
+            _logger = logger;
+        }
+        public void Listen()
         {
             foreach(var i in Enumerable.Range(0, RequestCount))
             {
                 try
                 {
                     var ping = new System.Net.NetworkInformation.Ping();
-
                     var result = ping.Send(SiteAddress);
-                    logger.Log($"{result?.Status.ToString()} {DateTime.Now}");
+                    _logger.Log($"{result?.Status.ToString()} {DateTime.Now}");
                 }
                 catch (Exception e)
                 {
-                    logger.Log($"{e.Message} {DateTime.Now}");
+                    _logger.Log($"{e.Message} {DateTime.Now}");
                 }
                 finally
                 {
