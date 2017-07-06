@@ -1,16 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DouListener
 {
-    class FileLogger:ILogger
+    class FileLogger : ILogger
     {
-        public void Log(LogLevel level, string message)
+        public string FilePath { get; set; } = @"\";
+        public string FileName { get; set; } = "Log.txt";
+        public void Log(string message)
         {
-            throw new NotImplementedException();
+            File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + FilePath + FileName, $"Status: {message}\n");
         }
     }
 }

@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace DouListener
 {
-    public enum LogLevel
+    internal interface ILogger
     {
-        Info,
-        Error
-    }
-    interface ILogger
-    {
-        void Log(LogLevel level, string message);
+        void Log(string message);
     }
 }

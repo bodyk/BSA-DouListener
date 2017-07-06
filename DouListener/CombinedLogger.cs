@@ -6,11 +6,21 @@ using System.Threading.Tasks;
 
 namespace DouListener
 {
-    class CombinedLogger:ILogger
+    class CombinedLogger : ILogger
     {
-        public void Log(LogLevel level, string message)
+        private readonly FileLogger _fileLog;
+        private readonly ConsoleLogger _consoleLog;
+
+        public CombinedLogger()
         {
-            throw new NotImplementedException();
+            _fileLog = new FileLogger();
+            _consoleLog = new ConsoleLogger();
+        }
+
+        public void Log(string message)
+        {
+            _fileLog.Log(message);
+            _consoleLog.Log(message);
         }
     }
 }

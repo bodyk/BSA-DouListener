@@ -8,9 +8,9 @@ namespace DouListener
 {
     class ConsoleLogger : ILogger
     {
-        public void Log(LogLevel level, string message)
+        public void Log(string message)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Status: {message}");
         }
     }
 }

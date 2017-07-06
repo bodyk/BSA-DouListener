@@ -10,6 +10,8 @@ namespace DouListener
     {
         static void Main(string[] args)
         {
+            SiteListener listener = new SiteListener();
+            listener.Listen(new CombinedLogger());
         }
     }
 }
